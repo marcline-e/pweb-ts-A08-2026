@@ -1,1 +1,4 @@
-MODUL.md 
+node_modules
+.env
+.claude/
+MODUL.md
