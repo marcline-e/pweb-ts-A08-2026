@@ -1,0 +1,15 @@
+{
+  "name": "modul-3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Antrian Rumah Sakit (pweb-ts-a08-2026), native TypeScript tanpa library",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
