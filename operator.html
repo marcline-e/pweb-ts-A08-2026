@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operator · Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="dist/pages/operator.js" defer></script>
+</head>
+<body class="page-operator">
+  <header class="navbar">
+    <a class="navbar-brand" href="index.html">Antrian<em>RS</em></a>
+    <nav class="navbar-links" aria-label="Navigasi utama">
+      <a href="index.html">Dashboard</a>
+      <a href="operator.html" aria-current="page">Operator</a>
+      <a href="layar.html">Layar</a>
+      <a href="ambil-antrian.html">Ambil Antrian</a>
+    </nav>
+    <div class="navbar-user">
+      <span id="user-name" class="navbar-name"></span>
+      <span id="user-role" class="badge"></span>
+      <button id="logout-btn" class="btn btn-outline" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Panel <em>Operator</em></h1>
+    <p class="muted">Panggil, lewati, atau selesaikan antrian. Tampilan diperbarui otomatis tiap 2 detik.</p>
+
+    <!-- Kartu per jenis antrian aktif diisi oleh dist/pages/operator.js -->
+    <section id="operator-grid" class="grid operator-grid" aria-live="polite"></section>
+    <p id="operator-empty" class="card muted" hidden>Belum ada jenis antrian yang aktif.</p>
+  </main>
+</body>
+</html>
