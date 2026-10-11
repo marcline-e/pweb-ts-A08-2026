@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login · Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="dist/pages/login.js" defer></script>
+</head>
+<body class="page-login">
+  <main class="login-wrap">
+    <section class="card login-card">
+      <span class="badge">Antrian Rumah Sakit</span>
+      <h1>Selamat <em>Datang</em> Kembali</h1>
+      <p class="muted">Masuk untuk mengelola antrian.</p>
+
+      <form id="login-form" class="login-form" novalidate>
+        <label for="username">Username</label>
+        <input id="username" name="username" class="input" type="text"
+               autocomplete="username" placeholder="mis. emilys" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" class="input" type="password"
+               autocomplete="current-password" placeholder="••••••••" required>
+
+        <!-- Pesan error visual; disembunyikan sampai ada error -->
+        <p id="login-error" class="form-error" role="alert" hidden></p>
+
+        <button id="login-submit" class="btn btn-primary" type="submit">
+          <span class="btn-label">Masuk</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+      </form>
+
+      <p class="muted login-links">
+        Pasien? <a href="ambil-antrian.html">Ambil nomor antrian</a> ·
+        <a href="layar.html">Lihat layar antrian</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>
