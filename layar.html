@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Layar Antrian · Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="dist/pages/layar.js" defer></script>
+</head>
+<body class="page-public page-screen">
+  <header class="navbar public-navbar">
+    <a class="navbar-brand" href="layar.html">Antrian<em>RS</em></a>
+    <nav class="navbar-links" aria-label="Navigasi publik">
+      <a href="layar.html" aria-current="page">Layar Antrian</a>
+      <a href="ambil-antrian.html">Ambil Nomor</a>
+    </nav>
+    <button id="fullscreen-toggle" class="btn btn-outline" type="button">Layar Penuh</button>
+  </header>
+
+  <main class="container screen-container">
+    <div class="screen-heading">
+      <div>
+        <span class="badge">Informasi pasien</span>
+        <h1>Panggilan <em>Antrian</em></h1>
+        <p class="muted">Silakan perhatikan nomor Anda dan menuju loket yang tertera.</p>
+      </div>
+      <div class="screen-tools">
+        <button id="sound-toggle" class="btn btn-outline" type="button" aria-pressed="false">Aktifkan suara</button>
+        <p id="updated-at" class="muted screen-updated" aria-live="polite">Memuat data…</p>
+      </div>
+    </div>
+
+    <section id="screen-grid" class="grid screen-grid" aria-live="polite" aria-label="Status antrian"></section>
+    <p id="screen-empty" class="card screen-empty muted" hidden>Belum ada jenis antrian aktif.</p>
+    <p id="screen-feedback" class="screen-feedback" role="status" hidden></p>
+  </main>
+</body>
+</html>

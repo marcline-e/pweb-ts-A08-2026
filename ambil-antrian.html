@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Ambil Nomor · Antrian Rumah Sakit</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="dist/pages/ambil-antrian.js" defer></script>
+</head>
+<body class="page-public page-take-ticket">
+  <header class="navbar public-navbar">
+    <a class="navbar-brand" href="ambil-antrian.html">Antrian<em>RS</em></a>
+    <nav class="navbar-links" aria-label="Navigasi publik">
+      <a href="layar.html">Layar Antrian</a>
+      <a href="ambil-antrian.html" aria-current="page">Ambil Nomor</a>
+    </nav>
+  </header>
+
+  <main class="container take-container">
+    <div class="take-heading">
+      <span class="badge">Selamat datang</span>
+      <h1>Ambil nomor <em>antrian</em></h1>
+      <p class="muted">Pilih layanan dan prioritas yang sesuai. Nomor Anda akan dipanggil melalui layar.</p>
+    </div>
+
+    <section id="take-grid" class="grid take-grid" aria-label="Pilih jenis antrian"></section>
+    <p id="take-empty" class="card take-empty muted" hidden>Belum ada jenis antrian yang tersedia.</p>
+    <section id="ticket-result" class="card ticket-result" aria-live="polite" hidden>
+      <span class="badge">Nomor Anda</span>
+      <h2 id="ticket-number" class="ticket-number"></h2>
+      <p id="ticket-detail" class="muted"></p>
+    </section>
+    <p id="take-feedback" class="take-feedback" role="alert" hidden></p>
+  </main>
+</body>
+</html>
