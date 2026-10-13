@@ -14,20 +14,14 @@ function messageFrom(body: unknown, fallback: string): string {
 }
 
 // GET /auth/me -> field role. Role tak dikenal/tidak ada dianggap "user" (paling terbatas).
-
-async function fetchRole(userId: number): Promise<Role> {
-  const res = await fetch(`${API}/users/${userId}`);
+async function fetchRole(token: string): Promise<Role> {
+  const res = await fetch(`${API}/auth/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   const body: unknown = await res.json();
-
-  if (!res.ok) {
-    throw new Error("Gagal mengambil role pengguna.");
-  }
-
-  return isRecord(body) && isRole(body.role)
-    ? body.role
-    : "user";
+  if (!res.ok) throw new Error(messageFrom(body, "Gagal mengambil data pengguna."));
+  return isRecord(body) && isRole(body.role) ? body.role : "user";
 }
-
 
 export async function login(username: string, password: string): Promise<Result<Session>> {
   try {
@@ -46,12 +40,7 @@ export async function login(username: string, password: string): Promise<Result<
 
     const token = body.accessToken;
     // Pakai role dari respons login bila suatu saat tersedia; jika tidak, ambil dari /auth/me.
-    const role: Role =
-  isRole(body.role)
-    ? body.role
-    : typeof body.id === "number"
-      ? await fetchRole(body.id)
-      : "user";
+    const role: Role = isRole(body.role) ? body.role : await fetchRole(token);
     const firstName = typeof body.firstName === "string" ? body.firstName : username;
 
     const session: Session = { token, role, firstName };

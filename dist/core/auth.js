@@ -9,15 +9,14 @@ function messageFrom(body, fallback) {
     return isRecord(body) && typeof body.message === "string" ? body.message : fallback;
 }
 // GET /auth/me -> field role. Role tak dikenal/tidak ada dianggap "user" (paling terbatas).
-async function fetchRole(userId) {
-    const res = await fetch(`${API}/users/${userId}`);
+async function fetchRole(token) {
+    const res = await fetch(`${API}/auth/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+    });
     const body = await res.json();
-    if (!res.ok) {
-        throw new Error("Gagal mengambil role pengguna.");
-    }
-    return isRecord(body) && isRole(body.role)
-        ? body.role
-        : "user";
+    if (!res.ok)
+        throw new Error(messageFrom(body, "Gagal mengambil data pengguna."));
+    return isRecord(body) && isRole(body.role) ? body.role : "user";
 }
 export async function login(username, password) {
     try {
@@ -35,11 +34,7 @@ export async function login(username, password) {
         }
         const token = body.accessToken;
         // Pakai role dari respons login bila suatu saat tersedia; jika tidak, ambil dari /auth/me.
-        const role = isRole(body.role)
-            ? body.role
-            : typeof body.id === "number"
-                ? await fetchRole(body.id)
-                : "user";
+        const role = isRole(body.role) ? body.role : await fetchRole(token);
         const firstName = typeof body.firstName === "string" ? body.firstName : username;
         const session = { token, role, firstName };
         save(KEYS.session, session);
