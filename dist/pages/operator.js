@@ -2,6 +2,7 @@
 // tiket berikutnya, jumlah menunggu, dan tombol Panggil Berikutnya / Lewati / Selesai.
 // Data dibaca ulang dari localStorage tiap 2 detik supaya tiket baru dari ambil-antrian ikut muncul.
 import { logout, requireAuth } from "../core/auth.js";
+import { speakTicket } from "../core/audio.js";
 import { loadQueueTypes } from "../core/storage.js";
 import { callNext, finishCurrent, getCalled, getWaiting, skipCurrent } from "../core/tickets.js";
 // Guard: hanya admin/moderator. Selain itu requireAuth redirect ke login.html dan
@@ -133,8 +134,13 @@ grid.addEventListener("click", (event) => {
     if (!isAction(action) || !queueId)
         return;
     btn.disabled = true; // cegah klik ganda sebelum render ulang
-    if (action === "next")
-        callNext(queueId);
+    if (action === "next") {
+        const called = callNext(queueId);
+        if (called) {
+            const queue = loadQueueTypes().find((item) => item.id === queueId);
+            speakTicket(called, queue?.name ?? "loket");
+        }
+    }
     else if (action === "skip")
         skipCurrent(queueId);
     else
