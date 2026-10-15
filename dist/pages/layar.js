@@ -1,3 +1,4 @@
+import { logout } from "../core/auth.js";
 import { isSpeechSupported, speakTicket, stopSpeech } from "../core/audio.js";
 import { loadQueueTypes } from "../core/storage.js";
 import { getCalled, getWaiting } from "../core/tickets.js";
@@ -50,6 +51,7 @@ const emptyMessage = byId("screen-empty", HTMLParagraphElement);
 const updatedAt = byId("updated-at", HTMLParagraphElement);
 const feedback = byId("screen-feedback", HTMLParagraphElement);
 const fullscreenButton = byId("fullscreen-toggle", HTMLButtonElement);
+byId("logout-btn", HTMLButtonElement).addEventListener("click", logout);
 const soundButton = byId("sound-toggle", HTMLButtonElement);
 const previousCalls = new Map();
 let initializedCalls = false;

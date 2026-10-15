@@ -1,4 +1,5 @@
 import type { Priority, QueueType, Ticket } from "../core/types.js";
+import { logout } from "../core/auth.js";
 import { loadQueueTypes } from "../core/storage.js";
 import { getWaiting, issueTicket } from "../core/tickets.js";
 
@@ -81,6 +82,7 @@ function renderCard(view: QueueView): HTMLElement {
 }
 
 const grid = byId("take-grid", HTMLElement);
+byId("logout-btn", HTMLButtonElement).addEventListener("click", logout);
 const emptyMessage = byId("take-empty", HTMLParagraphElement);
 const resultPanel = byId("ticket-result", HTMLElement);
 const resultNumber = byId("ticket-number", HTMLHeadingElement);
